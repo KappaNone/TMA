@@ -7,7 +7,6 @@ import './App.css'
 import WebApp from '@twa-dev/sdk'
 
 import eruda from "eruda";
-
 eruda.init();
 
 function App() {
@@ -26,16 +25,16 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>TWA + Vite + React</h1>
+      <h1>Gleb mega puzo</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          Бить ребенка
         </button>
       </div>
       {/*  */}
       <div className="card">
-        <button onClick={() => WebApp.showAlert(`Hello World! Current count is ${count}`)}>
-            Show Alert
+        <button onClick={() => WebApp.showAlert(`Ну ты тип, избил уже ${count} детей`)}>
+            Сколько детей избито?
         </button>
       </div>
     </>

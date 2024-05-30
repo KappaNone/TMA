@@ -68,7 +68,7 @@ function App() {
       </div>
       <h1>Gleb mega puzo</h1>
       <div className="card">
-        <code>`Your score: ${score}`</code>
+          <code>{`Your score: ${score}`}</code>
         <button onClick={() => setCount((count) => count + 1)}>
           {`Нажми на кнопку ровно ${randomNumber} раз`}
         </button>

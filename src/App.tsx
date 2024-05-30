@@ -37,6 +37,9 @@ function App() {
     startGame();
   }, []);
 
+  useEffect(() => {
+    console.log(count)
+  }, [count]);
 
   return (
     <>

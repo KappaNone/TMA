@@ -1,21 +1,38 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import twaLogo from './assets/tapps.png'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import twaLogo from "./assets/tapps.png";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
-import WebApp from '@twa-dev/sdk'
+import WebApp from "@twa-dev/sdk";
 
 import eruda from "eruda";
 eruda.init();
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(0);
+  
+  const resetGame = () => {
+    setRandomNumber(Math.floor(Math.random() * 10));
+    setCount(0);
+  }
 
+  const isWinner = () => {
+    resetGame();
+    return count == randomNumber ? true : false;
+  };
+
+  const allertText = () => {
+    return isWinner()
+      ? `Красава, нажал ровно ${randomNumber} раз`
+      : `Ты еблан, надо было нажать на кнопку ровно ${randomNumber} раз. Давай заново.`;
+  };
+  
   useEffect(() => {
-    const randomNumber = Math.floor(Math.random() * 100);
-    console.log(randomNumber);
-  }, [])
+    resetGame();
+  }, []);
+
 
   return (
     <>
@@ -33,17 +50,15 @@ function App() {
       <h1>Gleb mega puzo</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          Бить ребенка
+          {`Нажми на кнопку ровно ${randomNumber} раз`}
         </button>
       </div>
       {/*  */}
       <div className="card">
-        <button onClick={() => WebApp.showAlert(`Ну ты тип, избил уже ${count} детей`)}>
-            Сколько детей избито?
-        </button>
+        <button onClick={() => WebApp.showAlert(allertText())}>Проверить</button>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

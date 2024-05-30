@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import twaLogo from './assets/tapps.png'
 import viteLogo from '/vite.svg'
@@ -11,6 +11,11 @@ eruda.init();
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const randomNumber = Math.floor(Math.random() * 100);
+    console.log(randomNumber);
+  }, [])
 
   return (
     <>

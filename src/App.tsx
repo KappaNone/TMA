@@ -12,34 +12,35 @@ eruda.init();
 function App() {
   const [count, setCount] = useState(0);
   const [randomNumber, setRandomNumber] = useState(0);
-  
+
+  const generateRandomNumber = () => {
+    const randomNum = Math.floor(Math.random() * 10);
+    return randomNum == 0 ? randomNum + 1 : randomNum;
+  };
+
   const startGame = () => {
-    setRandomNumber(Math.floor(Math.random() * 10));
+    setRandomNumber(generateRandomNumber());
     setCount(0);
-  }
+  };
 
   const endGame = () => {
     WebApp.showAlert(allertText());
     isWinner() ? startGame() : setCount(0);
-  }
+  };
 
   const isWinner = () => {
     return count == randomNumber ? true : false;
   };
-  
+
   const allertText = () => {
     return isWinner()
       ? `Красава, нажал ровно ${randomNumber} раз`
       : `Ты еблан, надо было нажать на кнопку ровно ${randomNumber} раз, а ты нажал ${count}. Давай заново.`;
   };
-  
+
   useEffect(() => {
     startGame();
   }, []);
-
-  useEffect(() => {
-    console.log(count)
-  }, [count]);
 
   return (
     <>
@@ -56,7 +57,12 @@ function App() {
       </div>
       <h1>Gleb mega puzo</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          onClick={() => {
+            setCount((count) => count + 1);
+            console.log(count);
+          }}
+        >
           {`Нажми на кнопку ровно ${randomNumber} раз`}
         </button>
       </div>

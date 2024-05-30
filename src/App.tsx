@@ -6,6 +6,10 @@ import './App.css'
 
 import WebApp from '@twa-dev/sdk'
 
+import eruda from "eruda";
+
+eruda.init();
+
 function App() {
   const [count, setCount] = useState(0)
 

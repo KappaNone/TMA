@@ -13,24 +13,28 @@ function App() {
   const [count, setCount] = useState(0);
   const [randomNumber, setRandomNumber] = useState(0);
   
-  const resetGame = () => {
+  const startGame = () => {
     setRandomNumber(Math.floor(Math.random() * 10));
     setCount(0);
   }
 
+  const endGame = () => {
+    WebApp.showAlert(allertText());
+    isWinner() ? startGame() : setCount(0);
+  }
+
   const isWinner = () => {
-    resetGame();
     return count == randomNumber ? true : false;
   };
-
+  
   const allertText = () => {
     return isWinner()
       ? `Красава, нажал ровно ${randomNumber} раз`
-      : `Ты еблан, надо было нажать на кнопку ровно ${randomNumber} раз. Давай заново.`;
+      : `Ты еблан, надо было нажать на кнопку ровно ${randomNumber} раз, а ты нажал ${count}. Давай заново.`;
   };
   
   useEffect(() => {
-    resetGame();
+    startGame();
   }, []);
 
 
@@ -55,7 +59,7 @@ function App() {
       </div>
       {/*  */}
       <div className="card">
-        <button onClick={() => WebApp.showAlert(allertText())}>Проверить</button>
+        <button onClick={endGame}>Проверить</button>
       </div>
     </>
   );

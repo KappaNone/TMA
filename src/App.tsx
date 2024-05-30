@@ -10,6 +10,7 @@ import eruda from "eruda";
 eruda.init();
 
 function App() {
+  const [score, setScore] = useState(0);
   const [count, setCount] = useState(0);
   const [randomNumber, setRandomNumber] = useState(0);
 
@@ -23,9 +24,19 @@ function App() {
     setCount(0);
   };
 
+  const win = () => {
+    startGame();
+    setScore(score => score + 1)
+  }
+
+  const lose = () => {
+    setCount(0);
+    setScore(0);
+  }
+
   const endGame = () => {
     WebApp.showAlert(allertText());
-    isWinner() ? startGame() : setCount(0);
+    isWinner() ? win() : lose();
   };
 
   const isWinner = () => {
@@ -57,12 +68,8 @@ function App() {
       </div>
       <h1>Gleb mega puzo</h1>
       <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1);
-            console.log(count);
-          }}
-        >
+        <code>`Your score: ${score}`</code>
+        <button onClick={() => setCount((count) => count + 1)}>
           {`Нажми на кнопку ровно ${randomNumber} раз`}
         </button>
       </div>
